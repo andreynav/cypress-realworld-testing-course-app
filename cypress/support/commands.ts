@@ -42,15 +42,24 @@ declare global {
         interface Chainable {
             /**
              * Custom command to select DOM element by data-cy attribute.
-             * @example cy.getByDataAttr('hero-heading')
+             * @example cy.getElemByDataAttr('hero-heading')
              */
-            getByDataAttr(value: string): Chainable<JQuery<HTMLElement>>
+            getElemByDataAttr(value: string): Chainable<JQuery<HTMLElement>>
+
+            /**
+             * Custom command to assert the location equal the certain endpoint.
+             * @example cy.locationShouldBe('/')
+             */
+            locationShouldBe(endpoint: string): void
         }
     }
 }
 
-Cypress.Commands.add('getByDataAttr', (selector) => {
+Cypress.Commands.add('getElemByDataAttr', (selector) => {
     return cy.get(`[data-test=${selector}]`)
 })
 
+Cypress.Commands.add('locationShouldBe', (endpoint) => {
+    return cy.location('pathname').should('equal', endpoint)
+})
 

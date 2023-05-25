@@ -7,7 +7,7 @@ describe('Home test', () => {
 
   context('Hero section', () => {
     it('the h1 contains correct text', () => {
-      cy.getByDataAttr('hero-heading').contains('Testing Next.js Applications with Cypress')
+      cy.getElemByDataAttr('hero-heading').contains('Testing Next.js Applications with Cypress')
     })
 
     it('the features on the home page are correct', () => {
@@ -26,12 +26,12 @@ describe('Home test', () => {
 
     testData.forEach(({courseValue, expectedText, expectedLink}) => {
       it(`Course: ${expectedText}`, () => {
-        cy.getByDataAttr(courseValue).getByDataAttr('course-title').contains(expectedText)
+        cy.getElemByDataAttr(courseValue).getElemByDataAttr('course-title').contains(expectedText)
       })
 
       it(`Course: transition to the ${courseValue} link`, () => {
-        cy.getByDataAttr(courseValue).find('a').contains('Get started').click()
-        cy.location('pathname').should('equal', expectedLink)
+        cy.getElemByDataAttr(courseValue).find('a').contains('Get started').click()
+        cy.locationShouldBe(expectedLink)
       })
     })
   })
