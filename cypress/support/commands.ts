@@ -35,3 +35,22 @@
 //     }
 //   }
 // }
+export {}
+
+declare global {
+    namespace Cypress {
+        interface Chainable {
+            /**
+             * Custom command to select DOM element by data-cy attribute.
+             * @example cy.getByDataAttr('hero-heading')
+             */
+            getByDataAttr(value: string): Chainable<JQuery<HTMLElement>>
+        }
+    }
+}
+
+Cypress.Commands.add('getByDataAttr', (selector) => {
+    return cy.get(`[data-test=${selector}]`)
+})
+
+

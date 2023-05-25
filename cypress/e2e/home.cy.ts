@@ -1,10 +1,12 @@
+export {}
+
 describe('Home test', () => {
   beforeEach(() => {
         cy.visit('http://localhost:3000/')
   })
 
   it('the h1 contains correct text', () => {
-    cy.get('[data-test="hero-heading"]').contains('Testing Next.js Applications with Cypress')
+    cy.getByDataAttr('hero-heading').contains('Testing Next.js Applications with Cypress')
   })
 
   it('the features on the home page are correct', () => {
